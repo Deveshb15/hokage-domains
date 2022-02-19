@@ -11,12 +11,13 @@ const main = async () => {
 	await txn.wait();
 	console.log("Minted domain devesh.hokage");
 
-	txn = await domainContract.setRecord("devesh", "I feel bad for sarada as she want's be a Hokage too:)))");
+	txn = await domainContract.setCharacter("devesh", "Kakashi");
 	await txn.wait();
-	console.log("Set record for devesh.hokage");
+	console.log("Set character for devesh.hokage");
 
-	const address = await domainContract.getAddress("devesh");
-	console.log("Owner of domain devesh:", address);
+	txn = await domainContract.setCharacterLink("devesh", "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest?cb=20170628120149");
+	await txn.wait()
+	console.log("Set character link for devesh.hokage");
 
 	const balance = await hre.ethers.provider.getBalance(domainContract.address);
 	console.log("Contract balance:", hre.ethers.utils.formatEther(balance));
